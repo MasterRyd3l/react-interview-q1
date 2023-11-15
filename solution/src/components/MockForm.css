@@ -1,0 +1,37 @@
+input[type=text], select {
+    width: 100%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+}
+
+span {
+    color: red;
+    float: left;
+}
+
+.col-25 {
+    width: 25%;
+    float: left;
+    line-height: 43px;
+}
+
+.col-75 {
+    width: 75%;
+    float: left;
+}
+
+.row {
+    padding: 2.5rem 0;
+}
+
+label {
+    font-weight: bold;
+}
+
+.button-container {
+    float: right;
+}
+
+.clear-button {
+    margin: 1rem;
+}
