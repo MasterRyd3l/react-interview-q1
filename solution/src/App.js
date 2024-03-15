@@ -73,6 +73,11 @@ function App() {
     }
   };
 
+  const handleClearTable = () => {
+    handleClearInputs();
+    setTableData([]);
+  };
+
   // Effect hook to validate the name asynchronously after a delay.
   useEffect(() => {
     if (name === "") {
@@ -132,7 +137,7 @@ function App() {
       </div>
       <div className="button-container">
         <div>
-          <button type="button" onClick={handleClearInputs}>
+          <button type="button" onClick={handleClearTable}>
             Clear
           </button>
         </div>
@@ -140,7 +145,7 @@ function App() {
           <button
             type="button"
             onClick={handleAdd}
-            disabled={errorMsg || name === ""}
+            disabled={isCheckingName || errorMsg || name === ""}
           >
             Add
           </button>
@@ -152,4 +157,3 @@ function App() {
 }
 
 export default App;
-
