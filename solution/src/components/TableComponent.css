@@ -1,0 +1,32 @@
+/* TableComponent.css */
+.table-container {
+    margin: 20px;
+    overflow-x: auto; /* Allows table to be scrollable horizontally */
+    border-radius: 10px; /* Adds rounded corners to the container */
+    border: 1px solid #ddd; /* Adds a border around the container, adjust color as needed */
+    background-color: white; /* Ensures the background behind the rounded corners is filled */
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse; /* Collapses border to a single line */
+  }
+  
+  .table th, .table td {
+    text-align: left;
+    padding: 8px; /* Adds padding inside table cells */
+    border-bottom: 1px solid #ddd; /* Adds a bottom border to all cells */
+  }
+  
+  .table th {
+    background-color: #f2f2f2; /* Light grey background for header cells */
+    color: black; /* Text color for headers */
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra-striping for rows */
+  }
+  
+  .table tr:hover {
+    background-color: #eaeaea; /* Hover effect for rows */
+  }
