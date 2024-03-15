@@ -1,38 +1,94 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.equal-dropdown,
+.big-input {
+  width: 700px; /* Set a fixed width for the input and dropdown */
+  height: 50px; /* Set the height */
+  padding: 10px; /* Add padding */
+  font-size: 16px; /* Adjust font size */
+  border: 1px solid #000; /* Make border black */
+  border-radius: 5px; /* Add border radius */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.equal-dropdown {
+  width: 700px; /* Ensure select dropdown is the same size as input box */
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+.button-group button {
+  margin-right: 10px;
+}
+
+.content-box {
+  width: 80%; /* Adjust width as needed */
+  margin-top: 20px;
+  text-align: left;
+}
+
+.content-list {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next row */
+  justify-content: space-between; /* Evenly distribute items in rows */
+}
+
+.content-row {
+  display: flex;
+  width: 48%; /* Adjust as needed */
+  flex-wrap: wrap;
+}
+
+.content-item {
+  margin-bottom: 20px; /* Add margin bottom to create space between items */
+  padding: 20px;
+  border: 1px solid #000; /* Make table border black */
+  border-radius: 8px; /* Add border radius */
+}
+/* App.css */
+
+.my-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 700px;
+}
+
+.my-table td, .my-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.my-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.my-table tr:hover {
+  background-color: #ddd;
+}
+
+.my-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
