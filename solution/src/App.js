@@ -16,20 +16,29 @@ function App() {
     });
   }, []);
 
-  const handleNameChange = async (event) => {
+  const handleNameChange = (event) => {
     const newName = event.target.value;
     setName(newName);
-
-    // Validate name using mock API
-    const isValid = await isNameValid(newName);
-    setIsValidName(isValid);
-
-    if (!isValid) {
-      setNameErrorMessage('Name is already taken. Please choose another.');
-    } else {
-      setNameErrorMessage('');
-    }
   };
+  
+  useEffect(() => {
+    const validateName = async () => {
+      // Validate name using mock API
+      const isValid = await isNameValid(name);
+      setIsValidName(isValid);
+  
+      if (!isValid) {
+        setNameErrorMessage('Name is already taken. Please choose another.');
+      } else {
+        setNameErrorMessage('');
+      }
+    };
+  
+    // Call the validateName function when the name changes
+    validateName();
+  }, [name]);
+  
+  
 
   const handleLocationChange = (event) => {
     setSelectedLocation(event.target.value);
