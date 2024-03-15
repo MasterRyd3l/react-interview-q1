@@ -121,8 +121,9 @@ function App() {
         </div>
       </form>
       {/* Display box for contents */}
+      <h2>Contents</h2>
       <div className="content-box">
-        <h2>Contents</h2>
+        
         <table className="my-table">
         <thead>
           <tr>
