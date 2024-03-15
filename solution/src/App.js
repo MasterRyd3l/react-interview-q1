@@ -9,6 +9,7 @@ function App() {
   const [locations, setLocations] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState('');
   const [content, setContent] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     getLocations().then(locations => {
@@ -16,48 +17,69 @@ function App() {
     });
   }, []);
 
-  const handleNameChange = (event) => {
+  const handleNameChange = async (event) => {
     const newName = event.target.value;
     setName(newName);
+
+    // Validate name using mock API
+    const isValid = await isNameValid(newName);
+    setIsValidName(isValid);
+
+    if (!isValid) {
+      setNameErrorMessage('Name is already taken. Please choose another.');
+    } else {
+      setNameErrorMessage('');
+    }
   };
-  
-  useEffect(() => {
-    const validateName = async () => {
-      // Validate name using mock API
-      const isValid = await isNameValid(name);
-      setIsValidName(isValid);
-  
-      if (!isValid) {
-        setNameErrorMessage('Name is already taken. Please choose another.');
-      } else {
-        setNameErrorMessage('');
-      }
-    };
-  
-    // Call the validateName function when the name changes
-    validateName();
-  }, [name]);
-  
-  
 
   const handleLocationChange = (event) => {
     setSelectedLocation(event.target.value);
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission here, e.g., send data to server
-    const newItem = {
-      name: name,
-      location: selectedLocation
-    };
-    setContent([...content, newItem]);
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // Validate input fields
+    if (!name) {
+      setError('Name is empty');
+      return;
+    }
+
+    // If validation passes, clear any previous error messages
+    setError(null);
+
+    // Add new item to content state
+    setContent([...content, { name, location: selectedLocation }]);
+    
+    // Clear input fields
     setName('');
     setSelectedLocation('');
   };
 
   const handleClear = () => {
     setContent([]);
+  };
+
+  const handleAdd = () => {
+    // Validate input fields
+    if (!name) {
+      setError('Name is empty');
+      return;
+    }
+    if (content.map(({ name }) => name).includes(name)) {
+      setError('This name has already been taken');
+      return;
+    }
+
+    // If validation passes, clear any previous error messages
+    setError(null);
+
+    // Add new item to content state
+    setContent([...content, { name, location: selectedLocation }]);
+    
+    // Clear input fields
+    setName('');
+    setSelectedLocation('');
   };
 
   return (
@@ -75,6 +97,7 @@ function App() {
           />
           {!isValidName && <p className="error-message">{nameErrorMessage}</p>}
         </div>
+        {error && <p className="error-message">{error}</p>}
         {/* Location dropdown */}
         <div className="form-group">
           <label htmlFor="location">Location:</label>
@@ -92,12 +115,15 @@ function App() {
         </div>
         {/* Buttons on the right side */}
         <div className="button-group">
-          <button type="submit">Add</button>
+         
           <button type="button" onClick={handleClear}>Clear</button>
+          <button type="button" onClick={handleAdd}>Add</button>
         </div>
       </form>
       {/* Display box for contents */}
-      <table className="my-table">
+      <div className="content-box">
+        <h2>Contents</h2>
+        <table className="my-table">
         <thead>
           <tr>
             <th>Name</th>
@@ -114,6 +140,8 @@ function App() {
           ))}
         </tbody>
       </table>
+      </div>
+      
     </div>
   );
 }
